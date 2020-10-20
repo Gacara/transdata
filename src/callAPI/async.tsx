@@ -2,7 +2,7 @@ import React from 'react'
 
 interface IState {
   isLoading: boolean;
-  error?: Error;
+  error?: Error | null;
 }
 
 interface IErrorProps {
@@ -23,7 +23,7 @@ interface IAsyncProps {
   state: IState;
   renderError?: React.Component<IErrorProps>;
   renderLoading?: React.Component<any>;
-  children: React.Component<any>;
+  children: React.ReactNode;
 }
   
 const DefaultErrorComponent = ({ error }: IErrorProps) => {
@@ -46,7 +46,7 @@ function LoadingOverride({renderLoading}: LoadingOverrideInterface) {
   return <>{renderLoading ? renderLoading : DefaultLoadingComponent}</>;
 }
 
-export default ({ state, renderError: ErrorComponent, renderLoading: LoadingComponent, children }: IAsyncProps) => {
+export default ({ state, renderError: ErrorComponent, renderLoading: LoadingComponent, children }: IAsyncProps): React.ReactElement => {
 
   
   if (state.error) {
@@ -54,6 +54,6 @@ export default ({ state, renderError: ErrorComponent, renderLoading: LoadingComp
   } else if (state.isLoading) {
     return <LoadingOverride renderLoading={LoadingComponent} />
   } else {
-    return children
+    return <>{children}</>;
   }
 }
