@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface listInterface {
+export interface listInterface {
     value?: string
     name: string
   }
@@ -40,7 +40,7 @@ interface listInterface {
           {
               list && list.length > 0
               ?
-              list.map((el)=>(<MenuItem value={el.name}>{el.name}</MenuItem>))
+              list.map((el)=>(<MenuItem value={el.value || el.name}>{el.name}</MenuItem>))
               :
               <MenuItem value={""}>Empty</MenuItem>
           }
