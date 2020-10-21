@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {FormControl, InputLabel, MenuItem, Select, createStyles, makeStyles, Theme} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -13,34 +13,34 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface IProfile {
-    slug: string
+interface listInterface {
+    value?: string
     name: string
   }
   
-  interface listInterface {
-   list: IProfile[] | null;
-  }
-function Search({list}: listInterface): React.ReactElement{
+  interface selectInterface {
+   list: listInterface[] | null;
+   label: string;
+   value: string;
+   handleChange?: (event: React.ChangeEvent<{name?: string | undefined;value: unknown}>) => void}
+
+
+  function CustomSelect({list, label, handleChange, value}: selectInterface): React.ReactElement{
     const classes = useStyles();
-    const [station, setStation] = useState<string>("");
-    
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setStation(event.target.value as string);
-      };
+
     return(
     <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Metro</InputLabel>
+        <InputLabel id="demo-simple-select-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={station}
+          value={value}
           onChange={handleChange}
         >
           {
               list && list.length > 0
               ?
-              list.map((station)=>(<MenuItem value={station.name}>{station.name}</MenuItem>))
+              list.map((el)=>(<MenuItem value={el.name}>{el.name}</MenuItem>))
               :
               <MenuItem value={""}>Empty</MenuItem>
           }
@@ -49,4 +49,4 @@ function Search({list}: listInterface): React.ReactElement{
     );
 }
 
-export default Search;
+export default CustomSelect;

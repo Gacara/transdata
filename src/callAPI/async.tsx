@@ -18,7 +18,6 @@ interface LoadingOverrideInterface {
   renderLoading?: React.Component<any>;
 }
   
-  
 interface IAsyncProps {
   state: IState;
   renderError?: React.Component<IErrorProps>;
