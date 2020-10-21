@@ -26,7 +26,7 @@ function Recherche(): React.ReactElement {
   const [metroCodes, setMetroCodes] = useState<data<metrosInterface> | null>(null);
   const [metroCodeDepart, setMetroCodeDepart] = useState<string>("");
   const [metroStationDepart, setMetroStationDepart] = useState<string>("");
-  const [metroCodeArrivee, setMetroCodeArrivee] = useState<string>("");
+ // const [metroCodeArrivee, setMetroCodeArrivee] = useState<string>("");
   const [metroStationArrivee, setMetroStationArrivee] = useState<string>("");
 
   const { refresh: refreshMetros} = useRefreshablePromise(() => fetchMetros(), setMetroCodes);
@@ -34,7 +34,7 @@ function Recherche(): React.ReactElement {
   const stationsDepart: listInterface[] | null = metroStations && metroStations.result.stations ? metroStations.result.stations.map(({name, slug: value}) => {return {name, value}}) : null;
   const metrosDepart: listInterface[] | null = metroCodes ? metroCodes.result.metros.map(({name, code: value}) => {return {name, value}}) : null;
   const stationsArrivee: listInterface[] | null = metroStations && metroStations.result.stations ? metroStations.result.stations.map(({name, slug: value}) => {return {name, value}}) : null;
-  const metrosArrivee: listInterface[] | null = metroCodes ? metroCodes.result.metros.map(({name, code: value}) => {return {name, value}}) : null;
+  //const metrosArrivee: listInterface[] | null = metroCodes ? metroCodes.result.metros.map(({name, code: value}) => {return {name, value}}) : null;
 
   const RefreshStationsList = async () => {
     await notifRefresh()
