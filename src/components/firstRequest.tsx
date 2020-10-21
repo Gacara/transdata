@@ -48,6 +48,7 @@ function Recherche(): React.ReactElement {
 
   function onMetroCodeClick(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>){
     setMetroStationDepart("");
+    setMetroStationArrivee("");
     setMetroCodeDepart(event.target.value as string);
   }
 
